@@ -1,6 +1,5 @@
 package ru.geekbrains.controllers;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.geekbrains.persist.Product;
@@ -14,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 import static ru.geekbrains.listeners.ContextListener.PRODUCT_REPO;
 
@@ -49,6 +46,8 @@ public class MainServlet extends HttpServlet {
             showEditProductPage(req, resp);
         } else if (req.getServletPath().equals("/delete")) {
             deleteProduct(req, resp);
+        } else if (req.getServletPath().equals("/showOne")) {
+            showOneProduct(req, resp);
         } else {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
@@ -56,7 +55,7 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.info("Date {}", req.getParameter("price"));
+        logger.info("Price {}", req.getParameter("price"));
 
         if (req.getServletPath().equals("/update")) {
             updateProduct(req, resp);
@@ -76,6 +75,25 @@ public class MainServlet extends HttpServlet {
             return;
         }
         getServletContext().getRequestDispatcher("/WEB-INF/templates/index.jsp").forward(req, resp);
+    }
+
+    private void showOneProduct(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
+        long id;
+        try {
+            id = Long.parseLong(req.getParameter("id"));
+        } catch (Exception ex) {
+            logger.error("", ex);
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+        try {
+            req.setAttribute("product", repository.findById(id));
+        } catch (SQLException ex) {
+            logger.error("", ex);
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            return;
+        }
+        getServletContext().getRequestDispatcher("/WEB-INF/templates/oneProduct.jsp").forward(req, resp);
     }
 
     private void showNewProductPage(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {

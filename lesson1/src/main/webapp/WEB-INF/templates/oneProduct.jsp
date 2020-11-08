@@ -3,19 +3,14 @@
 <!doctype html>
 <html lang="en">
 
-<%@ include file="head.jsp"%>
+<%@ include file="head.jsp" %>
 
 <body>
 
-<%@ include file="header.jsp"%>
+<%@ include file="header.jsp" %>
 
 <div class="container">
     <div class="row py-2">
-        <div class="col-12">
-            <c:url value="/new" var="productNewUrl"/>
-            <a class="btn btn-primary" href="${productNewUrl}">Add Product</a>
-        </div>
-
         <div class="col-12">
             <table class="table table-bordered my-2">
                 <thead>
@@ -27,7 +22,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="product" items="${requestScope.products}">
+                <c>
                     <tr>
                         <th scope="row">
                             <c:out value="${product.id}"/>
@@ -47,18 +42,10 @@
                                 <c:param name="id" value="${product.id}"/>
                             </c:url>
                             <a class="btn btn-danger" href="${productDeleteUrl}"><i class="far fa-trash-alt"></i></a>
-                            <c:url value="/cart/add" var="addToCartUrl">
-                                <c:param name="id" value="${product.id}"/>
-                            </c:url>
-                            <a class="btn btn-success" href="${addToCartUrl}"><i class="fas fa-edit"></i></a>
-                            <c:url value="/showOne" var="showOneUrl">
-                                <c:param name="id" value="${product.id}"/>
-                            </c:url>
-                            <a class="btn btn-success" href="${showOneUrl}"><i class="fas fa-edit"></i></a>
                         </td>
                     </tr>
                     <%-- } --%>
-                </c:forEach>
+                </c>
                 </tbody>
             </table>
         </div>
@@ -67,4 +54,4 @@
 
 <%@ include file="footer-scripts.jsp" %>
 
-</html>
+</body>

@@ -11,10 +11,6 @@ import java.io.IOException;
 public class Order extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/header_page").include(req, resp);
-
-        resp.getWriter().println("<h2>Order</h2>");
-
-        getServletContext().getRequestDispatcher("/footer_page").include(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/templates/order.jsp").forward(req, resp);
     }
 }
