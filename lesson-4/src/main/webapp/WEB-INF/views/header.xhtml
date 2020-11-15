@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:form>
+    <h:commandLink action="#{productController.goHome}" value="Main" styleClass="btn btn-primary"
+    />
+    <h:commandLink action="#{cartController.showCart}" value="Cart" styleClass="btn btn-primary"
+    />
+    <h:commandLink action="#{productController.about}" value="About" styleClass="btn btn-primary"
+    />
+    <h:commandLink action="#{orderController.saveOrder}" value="Order" styleClass="btn btn-primary"
+    />
+
+</h:form>
+
+</html>
