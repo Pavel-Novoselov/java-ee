@@ -13,47 +13,47 @@
         <ui:include src="WEB-INF/views/header.xhtml">
         </ui:include>
     </nav>
-
     <div class="container">
         <div class="row py-2">
-            <h:form id="cartForm">
-                <div class="col-12">
-                    <h:commandButton value="Save Order" styleClass="btn btn-primary"
-                                     action="#{orderController.saveOrder}"/>
+
+
+            <div class="col-12">
+
+                <h:dataTable value="#{cartController.cartList}" var="product"
+                             styleClass="table table-bordered my-2">
+                    <h:column>
+                        <f:facet name="header">Id</f:facet>
+                        #{product.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Description</f:facet>
+                        #{product.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Price</f:facet>
+                        #{product.price}
+                    </h:column>
+                </h:dataTable>
+            </div>
+
+            <h:form>
+                <input type="hidden" id="id" name="id"/>
+                <div class="form-group">
+                    <h:outputLabel value="Адрес доставки"/>
+                    <h:inputText styleClass="form-control" id="address"
+                                 value="#{orderController.order.address}"
+                                 placeholder="Enter description"/>
+                    <h:message for="address" style="color: #ff0000" />
                 </div>
 
-                <div class="col-12">
-
-                    <h:dataTable value="#{cartController.cartList}" var="product"
-                                 styleClass="table table-bordered my-2">
-                        <h:column>
-                            <f:facet name="header">Id</f:facet>
-                            #{product.id}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Description</f:facet>
-                            #{product.description}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Target date</f:facet>
-                            #{product.price}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Action</f:facet>
-
-                            <h:commandButton value="Add more" styleClass="btn btn-success"
-                                             action="#{cartController.addProductToCart(product)}"/>
-                            <h:commandButton value="Delete" styleClass="btn btn-danger"
-                                             action="#{cartController.deleteProductFromCart(product)}">
-                                <f:ajax event="click" render="toDoForm"/>
-                            </h:commandButton>
-
-                        </h:column>
-                    </h:dataTable>
-                </div>
+                <h:commandButton value="Submit" styleClass="btn btn-primary" action="#{orderController.saveOrder()}"/>
             </h:form>
+
+
+
         </div>
     </div>
+
 
     <ui:include src="WEB-INF/views/footer.xhtml">
     </ui:include>
