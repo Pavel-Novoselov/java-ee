@@ -18,7 +18,7 @@
             <h:form id="cartForm">
                 <div class="col-12">
                     <h:commandButton value="Make Order" styleClass="btn btn-primary"
-                                     action="#{cartController.makeOrder}"/>
+                                     action="#{orderController.createOrder(cartController.cartList)}"/>
                 </div>
 
                 <div class="col-12">

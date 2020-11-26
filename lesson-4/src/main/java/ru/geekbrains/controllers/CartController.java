@@ -35,8 +35,7 @@ public class CartController implements Serializable {
     public List<Product> getCartList() {
         if (cartList == null) {
             cartList = new ArrayList<>();
-            Product fakeProduct = new Product(1L, "Fake", BigDecimal.valueOf(100.00));
-            cartList.add(fakeProduct);
+
         }
         return cartList;
     }
@@ -61,5 +60,7 @@ public class CartController implements Serializable {
     public String makeOrder() {
         return "/order.xhtml?faces-redirect=true";
     }
+
+
 
 }
