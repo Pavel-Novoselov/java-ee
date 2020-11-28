@@ -1,0 +1,60 @@
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:include src="WEB-INF/views/head.xhtml">
+    <ui:param name="title" value="Order"/>
+</ui:include>
+
+<h:body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ui:include src="WEB-INF/views/header.xhtml">
+        </ui:include>
+    </nav>
+    <div class="container">
+        <div class="row py-2">
+            <div class="col-12">
+                <div class="form-group">
+                <h:dataTable value="#{cartController.cartList}" var="product"
+                             styleClass="table table-bordered my-2">
+                    <h:column>
+                        <f:facet name="header">Id</f:facet>
+                        #{product.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Description</f:facet>
+                        #{product.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Price</f:facet>
+                        #{product.price}
+                    </h:column>
+                </h:dataTable>
+                </div>
+            </div>
+
+            <h:form>
+                <input type="hidden" id="id" name="id"/>
+                <div class="form-group">
+                    <h:outputLabel value="Адрес доставки"/>
+                    <h:inputText styleClass="form-control" id="address"
+                                 value="#{orderController.order.address}"
+                                 placeholder="Enter description"/>
+                    <h:message for="address" style="color: #ff0000" />
+                </div>
+
+                <h:commandButton value="Submit" styleClass="btn btn-primary" action="#{orderController.saveOrder()}"/>
+            </h:form>
+
+        </div>
+    </div>
+
+
+    <ui:include src="WEB-INF/views/footer.xhtml">
+    </ui:include>
+
+</h:body>
+
+</html>

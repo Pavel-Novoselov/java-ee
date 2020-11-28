@@ -1,0 +1,62 @@
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:include src="WEB-INF/views/head.xhtml">
+    <ui:param name="title" value="Order"/>
+</ui:include>
+
+<h:body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ui:include src="WEB-INF/views/header.xhtml">
+        </ui:include>
+    </nav>
+    <div class="container">
+        <div class="row py-2">
+
+            <h2>
+                Все заказы
+            </h2>
+            <h:form id="orderForm">
+                <div class="col-12">
+
+                    <h:dataTable value="#{orderController.allOrders}" var="order"
+                                 styleClass="table table-bordered my-2">
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            #{order.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Address</f:facet>
+                            #{order.address}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Sum</f:facet>
+                            #{order.sum}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+
+                            <h:commandButton value="Edit" styleClass="btn btn-success"
+                                             action="#{orderController.editOrder(order)}"/>
+                            <h:commandButton value="Delete" styleClass="btn btn-danger"
+                                             action="#{orderController.deleteOrder(order)}">
+                                <f:ajax event="click" render="productForm"/>
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
+        </div>
+    </div>
+
+
+    <ui:include src="WEB-INF/views/footer.xhtml">
+    </ui:include>
+
+</h:body>
+
+</html>
