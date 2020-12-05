@@ -1,0 +1,29 @@
+GET http://127.0.0.1:8080/lesson-6/api/v1/products/all
+
+###
+
+DELETE http://127.0.0.1:8080/lesson-6/api/v1/products/15
+
+###
+
+POST http://127.0.0.1:8080/lesson-6/api/v1/products/
+Content-Type: application/json
+
+{
+  "categoryId": 1,
+  "description": "yyyyy",
+  "price": 1000.00
+}
+
+###
+
+PUT http://127.0.0.1:8080/lesson-6/api/v1/products/
+Content-Type: application/json
+
+{
+  "categoryId": 1,
+  "description": "21yyyyy1",
+  "id": 14,
+  "price": 20100.00
+}
+

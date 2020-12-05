@@ -28,6 +28,11 @@ public class Category {
         this.name = name;
     }
 
+    public Category(final Long id, @NotEmpty final String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
