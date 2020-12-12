@@ -26,6 +26,16 @@ public class ProductRepr implements Serializable {
     }
 
     public ProductRepr(
+            @NotEmpty final String description,
+            @NotNull final BigDecimal price,
+            final long categoryId
+    ) {
+        this.description = description;
+        this.price = price;
+        this.categoryId = categoryId;
+    }
+
+    public ProductRepr(
             final Long id,
             @NotEmpty final String description,
             @NotNull final BigDecimal price,
