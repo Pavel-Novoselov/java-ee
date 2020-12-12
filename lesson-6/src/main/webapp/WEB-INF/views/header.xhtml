@@ -13,6 +13,17 @@
     />
     <h:commandLink action="#{orderController.showAllOrders}" value="Orders" styleClass="btn btn-primary"
     />
+    <h:link rendered="#{request.isUserInRole('ADMIN')}" styleClass="btn btn-primary" value="Users" outcome="admin/user"/>
+
+    <h:form rendered="#{request.userPrincipal != null}">
+            <h:commandButton action="#{productController.logout()}" value="Logout #{request.userPrincipal.name}"/>
+        </h:form>
+
+        <h:link styleClass="btn btn-primary"
+                rendered="#{request.userPrincipal == null}"
+                value="Login"
+                outcome="login"/>
+
 
 </h:form>
 

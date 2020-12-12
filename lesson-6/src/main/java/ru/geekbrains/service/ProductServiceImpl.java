@@ -4,7 +4,7 @@ import ru.geekbrains.persist.Category;
 import ru.geekbrains.persist.CategoryRepository;
 import ru.geekbrains.persist.Product;
 import ru.geekbrains.persist.ProductRepository;
-import ru.geekbrains.rest.ProductServiceRs;
+import ru.geekbrains.rest.ProductServiceRS;
 
 import javax.ejb.AsyncResult;
 import javax.ejb.Asynchronous;
@@ -17,7 +17,7 @@ import java.util.concurrent.Future;
 
 @Stateless
 @WebService(endpointInterface = "ru.geekbrains.service.ProductServiceWs", name = "ProductService")
-public class ProductServiceImpl implements ProductServiceLocal, ProductServiceRs, ProductServiceWs {
+public class ProductServiceImpl implements ProductServiceLocal, ProductServiceRS, ProductServiceWs {
     @Inject
     private ProductRepository productRepository;
 
