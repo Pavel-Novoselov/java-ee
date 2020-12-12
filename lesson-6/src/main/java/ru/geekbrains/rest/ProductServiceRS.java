@@ -9,7 +9,7 @@ import java.util.List;
 
 @Local
 @Path("/v1/products")
-public interface ProductServiceRs {
+public interface ProductServiceRS {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

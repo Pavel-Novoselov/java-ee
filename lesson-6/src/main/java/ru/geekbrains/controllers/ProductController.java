@@ -7,9 +7,11 @@ import ru.geekbrains.service.ProductServiceLocal;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,6 +19,7 @@ import java.util.List;
 @SessionScoped
 public class ProductController implements Serializable {
 
+    private static final long serialVersionUID = -7617779330325672744L;
     @EJB
     private CategoryRepository categoryRepository;
 
@@ -75,6 +78,11 @@ public class ProductController implements Serializable {
     }
 
     public String goHome() {
+        return "/index.xhtml?faces-redirect=true";
+    }
+
+    public String logout() {
+        ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
         return "/index.xhtml?faces-redirect=true";
     }
 
